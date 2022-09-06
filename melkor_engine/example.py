@@ -3,7 +3,6 @@ from .primitives import *
 from .executor import *
 from moic.data_structure import *
 from moic.utils import *
-from matplotlib.colors import rgb2hex
 
 # implementations of DSL operators
 class scene_imp(Vertex):
