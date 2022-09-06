@@ -36,19 +36,19 @@ class ConceptBox(nn.Module):
 
     def Min(self):
         d = self.d
-        return self.Center() - self.Edge()
+        return self.Center().to(device) - self.Edge().to(device)
 
     def Max(self):
         d = self.d
-        return self.Center() + self.Edge()
+        return self.Center().to(device) + self.Edge().to(device)
 
 class EntityBox(nn.Module):
     def __init__(self,feature,s_dim = 100,entity_edge_length = 1e-4):
         super().__init__()
         self.token = "entity"
         self.s_dim = feature.shape[1]
-        self.center = feature
-        self.edge = entity_edge_length * torch.ones([1,self.s_dim])
+        self.center = feature.to(device)
+        self.edge = entity_edge_length * torch.ones([1,self.s_dim]).to(device)
         self.entity_edge_length = entity_edge_length
         self.d = 0.25
 
@@ -62,11 +62,11 @@ class EntityBox(nn.Module):
 
     def Min(self):
         d = self.d
-        return self.Center() - self.Edge()
+        return self.Center().to(device) - self.Edge().to(device)
 
     def Max(self):
         d = self.d
-        return self.Center() + self.Edge()
+        return self.Center().to(device) + self.Edge().to(device)
 
 class ConceptDot(nn.Module):
     def __init__(self,name,dim = 256):
