@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from abc import abstractmethod
 
+if torch.cuda.is_available():device = "cuda:0"
+else:device = "cpu"
+
 def softplus(x):
     t = 0.2
     #return torch.max(x,torch.zeros_like(x))
@@ -18,8 +21,8 @@ class ConceptBox(nn.Module):
     def __init__(self,token,s_dim = 100):
         super().__init__()
         self.token = token
-        self.center = nn.Parameter(torch.randn([1,s_dim]) )
-        self.edge = nn.Parameter(torch.randn([1,s_dim]))
+        self.center = nn.Parameter(torch.randn([1,s_dim]) ).to(device)
+        self.edge = nn.Parameter(torch.randn([1,s_dim])).to(device)
         self.d = 0.25
         self.structure = None
         self.s_dim = s_dim
