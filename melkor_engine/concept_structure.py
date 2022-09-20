@@ -26,6 +26,9 @@ class ConceptBox(nn.Module):
         self.d = 0.25
         self.structure = None
         self.s_dim = s_dim
+
+    def __str__(self):return "concept box: {}".format(self.token)
+
     def Center(self):
         d = self.d
         return d * torch.tanh(self.center)
@@ -68,6 +71,8 @@ class EntityBox(nn.Module):
         d = self.d
         return self.Center().to(device) + self.Edge().to(device)
 
+    def __str__(self):return "entity box: {}".format(self.token)
+
 class ConceptDot(nn.Module):
     def __init__(self,name,dim = 256):
         super().__init__()
@@ -78,6 +83,8 @@ class ConceptDot(nn.Module):
     def Semantics(self):
         return self.center
 
+    def __str__(self):return "concept dot: {}".format(self.token)
+
 class EntityDot(nn.Module):
     def __init__(self,reps,dim):
         super().__init__()
@@ -86,6 +93,8 @@ class EntityDot(nn.Module):
     
     def Semantics(self):
         return self.center
+
+    def __str__(self):return "entity dot"
 
 def M(concept1,concept2):
     return torch.min(concept1.Max(),concept2.Max())
