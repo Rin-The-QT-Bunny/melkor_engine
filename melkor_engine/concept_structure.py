@@ -178,11 +178,11 @@ def toDotConcepts(constants,dim = 256):
     return output
 
 class BoxConceptStructure(ConceptStructure):
-    def __init__(self,constants):
-        super().__init__(constants)
+    def __init__(self,static_concepts,relations = [], dynamic_concepts = []):
+        super().__init__(static_concepts)
         self.concept_diction = {}
         self.concept_names = []
-        for const in constants:
+        for const in static_concepts:
             if (const.token not in self.concept_names):
                 self.concept_names.append(const.token)
             if (const.out_type  not in self.concept_names):
@@ -193,9 +193,9 @@ class BoxConceptStructure(ConceptStructure):
             else:
                 self.concept_diction[ctype] = [const]
         #print("concept structure diciton:",self.concept_diction)
-        self.dim = constants[0].s_dim
+        self.dim = static_concepts[0].s_dim
         #print("structure dim:",dim)
-        self.constants = toBoxConcepts(constants,self.dim)
+        self.constants = toBoxConcepts(static_concepts,self.dim)
     
     def Posses(self,entities,concept):
         # input a set of box entities and key-level concept
@@ -340,4 +340,4 @@ class ConeConceptStructure(nn.Module):
     
         return Prb/Deno
 
-print("Quasi-Symbolic Concept Structure Loaded.")
+#print("Quasi-Symbolic Concept Structure Loaded.")

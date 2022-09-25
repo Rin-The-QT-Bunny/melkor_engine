@@ -144,4 +144,4 @@ class Vertex(nn.Module):
         return 0
 
 
-print("Quasi-Symbolic Concept Primitives Loaded.")
+#print("Quasi-Symbolic Concept Primitives Loaded.")
