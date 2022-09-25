@@ -8,14 +8,9 @@ from abc import abstractmethod
 if torch.cuda.is_available():device = "cuda:0"
 else:device = "cpu"
 
-def softplus(x):
-    t = 0.2
-    #return torch.max(x,torch.zeros_like(x))
-    return t * torch.log(1 + torch.exp(x/t))
+def softplus(x,t = 0.2):return t * torch.log(1 + torch.exp(x/t))
 
-def bound(x,length = 0.4):
-    return torch.tanh(x) * length
-
+def bound(x,length = 0.4): return torch.tanh(x) * length
 
 class ConceptBox(nn.Module):
     def __init__(self,token,s_dim = 100):
