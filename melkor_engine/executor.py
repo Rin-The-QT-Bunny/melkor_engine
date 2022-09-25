@@ -80,8 +80,6 @@ class QuasiExecutor(nn.Module):
         outputs = execute(program,context)
         return outputs
 
-print("Quasi-Symbolic Executor Loaded")
-
 
 def GroundConcepts(executor,ground_data,lr = 2e-3):
     optim = torch.optim.Adam(executor.parameters(),lr)
