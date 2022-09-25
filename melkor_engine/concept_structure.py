@@ -29,21 +29,13 @@ class ConceptBox(nn.Module):
 
     def __str__(self):return "concept box: {}".format(self.token)
 
-    def Center(self):
-        d = self.d
-        return d * torch.tanh(self.center)
+    def Center(self):return self.d * torch.tanh(self.center)
 
-    def Edge(self):
-        d = self.d
-        return d * torch.sigmoid(self.edge)
+    def Edge(self):return self.d * torch.sigmoid(self.edge)
 
-    def Min(self):
-        d = self.d
-        return self.Center().to(device) - self.Edge().to(device)
+    def Min(self):return self.Center().to(device) - self.Edge().to(device)
 
-    def Max(self):
-        d = self.d
-        return self.Center().to(device) + self.Edge().to(device)
+    def Max(self):return self.Center().to(device) + self.Edge().to(device)
 
 class EntityBox(nn.Module):
     def __init__(self,feature,s_dim = 100,entity_edge_length = 1e-4):
