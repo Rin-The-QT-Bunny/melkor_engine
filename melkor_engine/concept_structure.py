@@ -196,6 +196,8 @@ class BoxConceptStructure(ConceptStructure):
         self.dim = static_concepts[0].s_dim
         #print("structure dim:",dim)
         self.constants = toBoxConcepts(static_concepts,self.dim)
+        self.relations = []
+        self.dynamic_concepts = []
     
     def Posses(self,entities,concept):
         # input a set of box entities and key-level concept
